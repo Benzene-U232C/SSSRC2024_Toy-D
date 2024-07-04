@@ -1,6 +1,8 @@
 const int echoPin = 16;
 const int trigPin = 17;
-void setup(){
+
+
+void setup(){  //起動後自動実行
   Serial.begin(9600);
   pinMode(echoPin, INPUT);
   pinMode(trigPin, OUTPUT);
@@ -9,7 +11,7 @@ void setup(){
   Serial.println("Ultrasonic sensor:");
 }
 
-void loop(){
+void loop(){  //起動後無限ループ
   float distance = readSensorData();
   Serial.print(distance);
   Serial.println(" cm");
@@ -19,7 +21,7 @@ void loop(){
   delay(400);
 }
 
-float readSensorData(){
+float readSensorData(){  //超音波センサー
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
@@ -30,7 +32,7 @@ float readSensorData(){
 }
 
 
-void lad(){
+void lad(){  //フォトレジスタ
   int analogPin=28;
   int val=0;
   val=analogRead(analogPin);
@@ -44,7 +46,7 @@ void lad(){
   }
 }
 
-void beep() {
+void beep() {  //ブザー
   int bf = 3;
   int l = 0;
   for(l = 0; l <= 1; l++){
@@ -59,8 +61,7 @@ void beep() {
   delay(250);
 }
 
-void light() {
-  
+void light() {  //LED(ブザーとほぼ共通なので簡略化できそうな気はする)
   int led = 15;
   int i = 0;
   for(i = 0; i <= 1; i++){
