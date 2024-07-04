@@ -1,13 +1,21 @@
-const int echoPin = 16;
-const int trigPin = 17;
+const int echoPin = 16;  //US-015 Echo
+const int trigPin = 17;  //US-015 Trig
+const int disT = 200;  //超音波センサーの距離閾値
+
+const int analogPin=28;  //フォトレジスタピン
+const int lT = 400;  //フォトレジスタ抵抗閾値
+
+const int bf = 3;  //ブザーピン
+
+const int led = 15;  //LEDピン
 
 
 void setup(){  //起動後自動実行
   Serial.begin(9600);
   pinMode(echoPin, INPUT);
   pinMode(trigPin, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(15, OUTPUT);
+  pinMode(bf, OUTPUT);
+  pinMode(led, OUTPUT);
   Serial.println("Ultrasonic sensor:");
 }
 
@@ -15,10 +23,10 @@ void loop(){  //起動後無限ループ
   float distance = readSensorData();
   Serial.print(distance);
   Serial.println(" cm");
-  if(distance <= 200){
+  if(distance <= disT){
     lad();
   }
-  delay(400);
+  delay(200);
 }
 
 float readSensorData(){  //超音波センサー
@@ -33,46 +41,46 @@ float readSensorData(){  //超音波センサー
 
 
 void lad(){  //フォトレジスタ
-  int analogPin=28;
   int val=0;
   val=analogRead(analogPin);
   Serial.println("lad");
   Serial.println(val);
-    if(val >= 400){
-    light();
+    if(val >= lT){
+    alert(led);
   } else {
     Serial.println("beep");
-    beep();
+    alert(bf);
   }
 }
 
+/*
 void beep() {  //ブザー
-  int bf = 3;
   int l = 0;
   for(l = 0; l <= 1; l++){
   digitalWrite(bf, HIGH);
-  delay(250);
+  delay(150);
   digitalWrite(bf, LOW);
-  delay(250);
+  delay(100);
   }
-  digitalWrite(bf, HIGH);
-  delay(500);
-  digitalWrite(bf, LOW);
-  delay(250);
 }
 
-void light() {  //LED(ブザーとほぼ共通なので簡略化できそうな気はする)
-  int led = 15;
+void light() {  //LED(ブザーと共通なので簡略化できそうな気はする)
   int i = 0;
   for(i = 0; i <= 1; i++){
   digitalWrite(led, HIGH);
-  delay(250);
+  delay(150);
   digitalWrite(led, LOW);
-  delay(250);
+  delay(100);
   }
-  Serial.println("light");
-  digitalWrite(led, HIGH);
-  delay(500);
-  digitalWrite(led, LOW);
-  delay(250);
+}
+*/
+
+void alert(int alertPin) {  //LEDとブザーによる警告
+  int i = 0;
+  for(i = 0; i <= 1; i++){
+  digitalWrite(alertPin, HIGH);
+  delay(150);
+  digitalWrite(alertPin, LOW);
+  delay(100);
+  }
 }
