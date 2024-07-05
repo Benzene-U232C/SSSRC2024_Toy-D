@@ -3,7 +3,7 @@ const int trigPin = 17;  //US-015 Trig
 const int distanceThreshold = 200;  //超音波センサーの距離閾値
 
 const int photoresistorPin=28;  //フォトレジスタピン
-const int photoresistorThreshold = 400;  //フォトレジスタ抵抗閾値
+const int photoresistorThreshold = 750;  //フォトレジスタ抵抗閾値
 
 const int buzzerPin = 3;  //ブザーピン
 
@@ -21,11 +21,11 @@ void setup(){  //起動後自動実行
 void loop(){  //起動後無限ループ
   float distance = readSensorData();
   Serial.print(distance);
-  Serial.print(" cm ");
+  Serial.println(" cm ");
   if(distance <= distanceThreshold){
     lad();
   }
-  delay(200);
+  delay(10);
 }
 
 float readSensorData(){  //超音波センサー
@@ -51,35 +51,13 @@ void lad(){  //フォトレジスタ
   }
 }
 
-/*
-void beep() {  //ブザー
-  int l = 0;
-  for(l = 0; l <= 1; l++){
-  digitalWrite(buzzerPin, HIGH);
-  delay(150);
-  digitalWrite(buzzerPin, LOW);
-  delay(100);
-  }
-}
-
-void light() {  //LED(ブザーと共通なので簡略化できそうな気はする)
-  int i = 0;
-  for(i = 0; i <= 1; i++){
-  digitalWrite(ledPin, HIGH);
-  delay(150);
-  digitalWrite(ledPin, LOW);
-  delay(100);
-  }
-}
-*/
-
 void alert(int alertPin) {  //LEDとブザーによる警告
-  int i = 0;
-  for(i = 0; i <= 1; i++){
+  int i = 1;
+  for(i = 1; i <= 1; i++){
   digitalWrite(alertPin, HIGH);
-  delay(150);
+  delay(600);
   digitalWrite(alertPin, LOW);
-  delay(100);
+  delay(75);
   }
 }
 
