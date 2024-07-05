@@ -9,5 +9,5 @@ Creating a motion sensor<br>
 ・Buzzer LF-MB12B06<br>
 ・Light-emitting diode<br>
 <br>
-Created with Arduino IDE
+Created with Arduino IDE<br><br>
 ⌬
