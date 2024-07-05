@@ -1,5 +1,5 @@
-const int echoPin = 16;  //US-015 Echo
-const int trigPin = 17;  //US-015 Trig
+const int echoPin = 16;  //Ultrasonic sensor US-015 Echo
+const int trigPin = 17;  //Ultrasonic sensor US-015 Trig
 const int distanceThreshold = 400;  //Ultrasonic sensor distance threshold[cm]
 
 const int photoresistorPin=28;  //Photoresistor pin
