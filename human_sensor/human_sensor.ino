@@ -22,7 +22,7 @@ void setup(){  //起動後自動実行
 void loop(){  //起動後無限ループ
   float distance = readSensorData();
   Serial.print(distance);
-  Serial.println(" cm");
+  Serial.print(" cm ");
   if(distance <= disT){
     lad();
   }
@@ -43,12 +43,12 @@ float readSensorData(){  //超音波センサー
 void lad(){  //フォトレジスタ
   int val=0;
   val=analogRead(analogPin);
-  Serial.println("lad");
-  Serial.println(val);
+  Serial.print(val);
     if(val >= lT){
     alert(led);
+    Serial.println(" LED");
   } else {
-    Serial.println("beep");
+    Serial.println(" beep");
     alert(bf);
   }
 }
