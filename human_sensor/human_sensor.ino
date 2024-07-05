@@ -23,7 +23,7 @@ void loop(){  //Endless loop after start
   Serial.print(distance);
   Serial.println("cm ");
   if(distance <= distanceThreshold){
-    lad();
+    photoresistor();
   }
   delay(5);
 }
@@ -38,7 +38,7 @@ float readSensorData(){  //Ultrasonic sensor
   return distance;
 }
 
-void lad(){  //Photoresistor
+void photoresistor(){  //Photoresistor
   int val=0;
   val=analogRead(photoresistorPin);
   Serial.print("Photoresistor:");
