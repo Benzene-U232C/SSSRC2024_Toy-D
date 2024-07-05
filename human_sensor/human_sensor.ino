@@ -1,21 +1,20 @@
 const int echoPin = 16;  //US-015 Echo
 const int trigPin = 17;  //US-015 Trig
-const int disT = 200;  //超音波センサーの距離閾値
+const int distanceThreshold = 200;  //超音波センサーの距離閾値
 
-const int analogPin=28;  //フォトレジスタピン
-const int lT = 400;  //フォトレジスタ抵抗閾値
+const int photoresistorPin=28;  //フォトレジスタピン
+const int photoresistorThreshold = 400;  //フォトレジスタ抵抗閾値
 
-const int bf = 3;  //ブザーピン
+const int buzzerPin = 3;  //ブザーピン
 
-const int led = 15;  //LEDピン
-
+const int ledPin = 15;  //LEDピン
 
 void setup(){  //起動後自動実行
   Serial.begin(9600);
   pinMode(echoPin, INPUT);
   pinMode(trigPin, OUTPUT);
-  pinMode(bf, OUTPUT);
-  pinMode(led, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
   Serial.println("Ultrasonic sensor:");
 }
 
@@ -23,7 +22,7 @@ void loop(){  //起動後無限ループ
   float distance = readSensorData();
   Serial.print(distance);
   Serial.print(" cm ");
-  if(distance <= disT){
+  if(distance <= distanceThreshold){
     lad();
   }
   delay(200);
@@ -39,17 +38,16 @@ float readSensorData(){  //超音波センサー
   return distance;
 }
 
-
 void lad(){  //フォトレジスタ
   int val=0;
-  val=analogRead(analogPin);
+  val=analogRead(photoresistorPin);
   Serial.print(val);
-    if(val >= lT){
-    alert(led);
+    if(val >= photoresistorThreshold){
+    alert(ledPin);
     Serial.println(" LED");
   } else {
     Serial.println(" beep");
-    alert(bf);
+    alert(buzzerPin);
   }
 }
 
@@ -57,9 +55,9 @@ void lad(){  //フォトレジスタ
 void beep() {  //ブザー
   int l = 0;
   for(l = 0; l <= 1; l++){
-  digitalWrite(bf, HIGH);
+  digitalWrite(buzzerPin, HIGH);
   delay(150);
-  digitalWrite(bf, LOW);
+  digitalWrite(buzzerPin, LOW);
   delay(100);
   }
 }
@@ -67,9 +65,9 @@ void beep() {  //ブザー
 void light() {  //LED(ブザーと共通なので簡略化できそうな気はする)
   int i = 0;
   for(i = 0; i <= 1; i++){
-  digitalWrite(led, HIGH);
+  digitalWrite(ledPin, HIGH);
   delay(150);
-  digitalWrite(led, LOW);
+  digitalWrite(ledPin, LOW);
   delay(100);
   }
 }
@@ -84,3 +82,4 @@ void alert(int alertPin) {  //LEDとブザーによる警告
   delay(100);
   }
 }
+
