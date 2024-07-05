@@ -21,7 +21,7 @@ void setup(){  //起動後自動実行
 void loop(){  //起動後無限ループ
   float distance = readSensorData();
   Serial.print(distance);
-  Serial.println(" cm ");
+  Serial.println("cm ");
   if(distance <= distanceThreshold){
     lad();
   }
@@ -41,7 +41,7 @@ float readSensorData(){  //超音波センサー
 void lad(){  //フォトレジスタ
   int val=0;
   val=analogRead(photoresistorPin);
-  Serial.print("フォトレジスタ: ");
+  Serial.print("フォトレジスタ:");
   Serial.print(val);
     if(val >= photoresistorThreshold){
     alert(ledPin);
@@ -56,7 +56,7 @@ void alert(int alertPin) {  //LEDとブザーによる警告
   int i = 1;
   for(i = 1; i <= 1; i++){
   digitalWrite(alertPin, HIGH);
-  delay(600);
+  delay(550);
   digitalWrite(alertPin, LOW);
   delay(75);
   }
