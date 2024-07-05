@@ -1,6 +1,6 @@
 const int echoPin = 16;  //US-015 Echo
 const int trigPin = 17;  //US-015 Trig
-const int distanceThreshold = 200;  //超音波センサーの距離閾値
+const int distanceThreshold = 400;  //超音波センサーの距離閾値[cm]
 
 const int photoresistorPin=28;  //フォトレジスタピン
 const int photoresistorThreshold = 750;  //フォトレジスタ抵抗閾値
@@ -41,12 +41,13 @@ float readSensorData(){  //超音波センサー
 void lad(){  //フォトレジスタ
   int val=0;
   val=analogRead(photoresistorPin);
+  Serial.print("フォトレジスタ: ");
   Serial.print(val);
     if(val >= photoresistorThreshold){
     alert(ledPin);
-    Serial.println(" LED");
+    Serial.println(" 検知 LED");
   } else {
-    Serial.println(" beep");
+    Serial.println(" 検知 beep");
     alert(buzzerPin);
   }
 }
