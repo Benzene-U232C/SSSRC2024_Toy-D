@@ -9,8 +9,8 @@ const int buzzerPin = 3;  //buzzer pin
 
 const int ledPin = 15;  //LED pin
 
-const int alertRing = 550;  //alert ringing time [s]
-const int alertInterval = 75;  //alert interval time [s]
+const int alertRing = 550;  //alert ringing time [ms]
+const int alertInterval = 75;  //alert interval time [ms]
 
 void setup(){  //Autorun after start
   Serial.begin(9600);
