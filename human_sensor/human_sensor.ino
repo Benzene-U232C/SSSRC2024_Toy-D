@@ -9,6 +9,9 @@ const int buzzerPin = 3;  //buzzer pin
 
 const int ledPin = 15;  //LED pin
 
+const int alertRing = 550;  //alert ringing time [s]
+const int alertInterval = 75;  //alert interval time [s]
+
 void setup(){  //Autorun after start
   Serial.begin(9600);
   pinMode(echoPin, INPUT);
@@ -53,12 +56,9 @@ void photoresistor(){  //Photoresistor
 }
 
 void alert(int alertPin) {  //Alert by LED and buzzer
-  int i = 1;
-  for(i = 1; i <= 1; i++){
   digitalWrite(alertPin, HIGH);
-  delay(550);
+  delay(alertRing);
   digitalWrite(alertPin, LOW);
-  delay(75);
-  }
+  delay(alertInterval);
 }
 
