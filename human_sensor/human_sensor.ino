@@ -1,13 +1,13 @@
-const int echoPin = 16;  //Ultrasonic sensor US-015 Echo
-const int trigPin = 17;  //Ultrasonic sensor US-015 Trig
+const int echoPin = 1;  //Ultrasonic sensor US-015 Echo
+const int trigPin = 0;  //Ultrasonic sensor US-015 Trig
 const int distanceThreshold = 400;  //Ultrasonic sensor distance threshold[cm]
 
 const int photoresistorPin=28;  //Photoresistor pin
 const int photoresistorThreshold = 750;  //Photoresistor threshold
 
-const int buzzerPin = 3;  //buzzer pin
+const int buzzerPin = 5;  //buzzer pin
 
-const int ledPin = 15;  //LED pin
+const int ledPin = 27;  //LED pin
 
 const int alertRing = 550;  //alert ringing time [ms]
 const int alertInterval = 75;  //alert interval time [ms]
